@@ -1,36 +1,25 @@
-// components/Card/CardSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the type for each item in the product array
-interface ProductItem {
-  id: number;
-  name: string;
-  price: number;
-}
-
-// Define the initial state type
 interface CardState {
-  product: ProductItem[];
+  items: Array<{ id: string; name: string }>; // Define your state structure
 }
 
 const initialState: CardState = {
-  product: [],
+  items: [],
 };
 
 const cardSlice = createSlice({
   name: "card",
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<ProductItem>) => {
-      state.product.push(action.payload);
+    addItem: (state, action: PayloadAction<{ id: string; name: string }>) => {
+      state.items.push(action.payload);
     },
-    removeItem: (state, action: PayloadAction<{ id: number }>) => {
-      state.product = state.product.filter(
-        (item) => item.id !== action.payload.id
-      );
+    removeItem: (state, action: PayloadAction<{ id: string }>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
   },
 });
 
-export const { addItem, removeItem } = cardSlice.actions;
-export default cardSlice.reducer;
+export const { addItem, removeItem } = cardSlice.actions; // Export actions
+export default cardSlice.reducer; // Export reducer

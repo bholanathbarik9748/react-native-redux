@@ -12,7 +12,11 @@ export default function RootNavigator() {
   return (
     <NavigationContainerComponent independent={true}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Home"
+          component={HomePage}
+        />
         <Stack.Screen name="Cart" component={CartPage} />
       </Stack.Navigator>
     </NavigationContainerComponent>
